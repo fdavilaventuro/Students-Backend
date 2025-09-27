@@ -55,11 +55,6 @@
     		<version>7.1.1.Final</version>
     		<type>pom</type>
 		</dependency>
-		<dependency>
-    		<groupId>io.hypersistence</groupId>
-    		<artifactId>hypersistence-utils-hibernate-60</artifactId>
-    		<version>3.7.3</version>
-		</dependency>
 	</dependencies>
 
 	<build>
