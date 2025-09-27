@@ -27,7 +27,7 @@ Microservicio RESTful para la gestión de estudiantes desarrollado con Spring Bo
 
 ### Paso 1: Clonar el repositorio
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/fdavilaventuro/Students-Backend.git
 cd students-backend
 ```
 
