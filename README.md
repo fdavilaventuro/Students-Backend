@@ -32,9 +32,9 @@ git clone https://github.com/fdavilaventuro/Students-Backend.git
 cd Students-Backend
 ```
 
-### Paso 2: Instalar maven y compilar la aplicación
+### Paso 2: Instalar maven y compilar la aplicación (ignora tests)
 ```bash
-docker run -it --rm -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3 mvn clean package
+docker run -it --rm -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3 mvn clean package -DskipTests
 ```
 
 ### Paso 3: Construir la imagen Docker

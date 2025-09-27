@@ -20,6 +20,7 @@ public class EstudiantePerfil {
     private String bio;
 
     @Column(columnDefinition = "JSONB")
+    @JdbcTypeCode(SqlTypes.JSON)
     private String preferencias;
 
     // Constructores
