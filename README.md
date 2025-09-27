@@ -75,7 +75,7 @@ docker ps
 docker logs estudiantes-app
 
 # Probar salud del servicio
-curl http://localhost:8080/estudiantes
+curl http://<public-ip>:8080/estudiantes
 ```
 
 ## 🔧 Configuración de la EC2
@@ -109,25 +109,25 @@ docker volume rm postgres_data
 ### GET /estudiantes
 Obtiene lista paginada de estudiantes
 ```bash
-curl "http://localhost:8080/estudiantes?page=0&size=10"
+curl "http://<public-ip>:8080/estudiantes?page=0&size=10"
 ```
 
 ### GET /estudiantes?email=valor
 Búsqueda filtrada por email
 ```bash
-curl "http://localhost:8080/estudiantes?email=ejemplo@correo.com"
+curl "http://<public-ip>:8080/estudiantes?email=ejemplo@correo.com"
 ```
 
 ### GET /estudiantes/{id}
 Obtiene un estudiante específico
 ```bash
-curl http://localhost:8080/estudiantes/2f8c9e7e-1234-5678-90ab-cdef12345678
+curl http://<public-ip>:8080/estudiantes/2f8c9e7e-1234-5678-90ab-cdef12345678
 ```
 
 ### POST /estudiantes
 Crea un nuevo estudiante
 ```bash
-curl -X POST http://localhost:8080/estudiantes \
+curl -X POST http://<public-ip>:8080/estudiantes \
   -H "Content-Type: application/json" \
   -d '{
     "nombres": "Juan",
@@ -146,7 +146,7 @@ curl -X POST http://localhost:8080/estudiantes \
 ### PATCH /estudiantes/{id}
 Actualización parcial de estudiante
 ```bash
-curl -X PATCH http://localhost:8080/estudiantes/2f8c9e7e-1234-5678-90ab-cdef12345678 \
+curl -X PATCH http://<public-ip>:8080/estudiantes/2f8c9e7e-1234-5678-90ab-cdef12345678 \
   -H "Content-Type: application/json" \
   -d '{
     "telefono": "+987654321",
@@ -157,7 +157,7 @@ curl -X PATCH http://localhost:8080/estudiantes/2f8c9e7e-1234-5678-90ab-cdef1234
 ### DELETE /estudiantes/{id}
 Elimina un estudiante
 ```bash
-curl -X DELETE http://localhost:8080/estudiantes/2f8c9e7e-1234-5678-90ab-cdef12345678
+curl -X DELETE http://<public-ip>:8080/estudiantes/2f8c9e7e-1234-5678-90ab-cdef12345678
 ```
 
 ## 🗃️ Estructura de la Base de Datos
