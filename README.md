@@ -24,6 +24,7 @@ Microservicio RESTful para la gestión de estudiantes desarrollado con Spring Bo
 - Docker instalado
 - Java 17 (para compilación local)
 - Maven (para compilación local)
+- Puedes usar el archivo cloudformation.yml como plantilla para crear la MV
 
 ### Paso 1: Clonar el repositorio
 ```bash
@@ -31,9 +32,9 @@ git clone https://github.com/fdavilaventuro/Students-Backend.git
 cd Students-Backend
 ```
 
-### Paso 2: Compilar la aplicación (opcional - si necesitas modificar código)
+### Paso 2: Instalar maven y compilar la aplicación
 ```bash
-mvn clean package
+docker run -it --rm -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3 mvn clean package
 ```
 
 ### Paso 3: Construir la imagen Docker
