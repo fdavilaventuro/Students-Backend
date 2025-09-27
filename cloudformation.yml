@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Plantilla CloudFormation para MV del Microservicio de Estudiantes'
+
+Parameters:
+  KeyPairName:
+    Description: 'Nombre del key pair existente para conexión SSH'
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    ConstraintDescription: 'Debe ser el nombre de un key pair existente'
+
+Resources:
+  # Security Group que permite SSH y el puerto de la aplicación
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: 'Habilita SSH y acceso al microservicio'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0  # ⚠️ Considera restringir a tu IP en producción
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0   # ⚠️ Para el microservicio agregador
+
+  # La instancia EC2
+  StudentServiceInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: ami-08d434e92c0cfa0c0  # Amazon Linux 2 (actualiza si necesario)
+      InstanceType: t3.micro           # ✅ Instancia burstable para ahorrar créditos :cite[4]
+      KeyName: !Ref KeyPairName
+      SecurityGroupIds:
+        - !Ref InstanceSecurityGroup
+      Tags:
+        - Key: Name
+          Value: 'mv-microservicio-estudiantes'
+      # Script de User Data para instalar Docker y Docker Compose al iniciar
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          yum update -y
+          yum install -y docker
+          service docker start
+          usermod -a -G docker ec2-user
+          # Instalar Docker Compose
+          curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          chmod +x /usr/local/bin/docker-compose
+
+Outputs:
+  InstanceId:
+    Description: 'ID de la instancia EC2'
+    Value: !Ref StudentServiceInstance
+  PublicIP:
+    Description: 'IP pública para conectarse a la instancia'
+    Value: !GetAtt StudentServiceInstance.PublicIp

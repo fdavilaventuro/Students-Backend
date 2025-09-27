@@ -1,6 +1,6 @@
 package com.cloudcomp.students.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
