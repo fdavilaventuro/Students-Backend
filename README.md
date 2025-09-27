@@ -217,4 +217,4 @@ docker inspect estudiantes-app
 
 ## 📞 Soporte
 
-Para issues o preguntas, escribir a @fdavilaventuro
+Para issues o preguntas, escribir a [@fdavilaventuro](https://www.github.com/fdavilaventuro)
