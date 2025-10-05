@@ -60,25 +60,6 @@ public class EstudianteService {
                 case "pais":
                     estudiante.setPais((String) value);
                     break;
-                case "perfil":
-                    if (value instanceof Map) {
-                        Map<String, Object> perfilMap = (Map<String, Object>) value;
-                        EstudiantePerfil perfil = estudiante.getPerfil();
-                        if (perfil == null) {
-                            perfil = new EstudiantePerfil();
-                            estudiante.setPerfil(perfil);
-                        }
-                        if (perfilMap.containsKey("avatarUrl")) {
-                            perfil.setAvatarUrl((String) perfilMap.get("avatarUrl"));
-                        }
-                        if (perfilMap.containsKey("bio")) {
-                            perfil.setBio((String) perfilMap.get("bio"));
-                        }
-                        if (perfilMap.containsKey("preferencias")) {
-                            perfil.setPreferencias(perfilMap.get("preferencias").toString());
-                        }
-                    }
-                    break;
             }
         });
         

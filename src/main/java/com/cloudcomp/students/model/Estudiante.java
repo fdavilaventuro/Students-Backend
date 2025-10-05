@@ -31,9 +31,6 @@ public class Estudiante {
     @UpdateTimestamp
     private Instant fechaActualizacion;
 
-    @OneToOne(mappedBy = "estudiante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private EstudiantePerfil perfil;
-
     // Constructores
     public Estudiante() {}
 
@@ -69,12 +66,4 @@ public class Estudiante {
 
     public Instant getFechaActualizacion() { return fechaActualizacion; }
     public void setFechaActualizacion(Instant fechaActualizacion) { this.fechaActualizacion = fechaActualizacion; }
-
-    public EstudiantePerfil getPerfil() { return perfil; }
-    public void setPerfil(EstudiantePerfil perfil) { 
-        this.perfil = perfil;
-        if (perfil != null) {
-            perfil.setEstudiante(this);
-        }
-    }
 }
