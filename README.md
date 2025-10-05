@@ -59,6 +59,16 @@ docker compose logs app
 curl http://<public-ip>:8080/estudiantes
 ```
 
+### Paso 6: Hacer ingesta (después de comprobar correcto funcionamiento)
+```bash
+# Instalar requerimientos
+pip install boto3 requests
+
+# Ejecutar script de ingesta incluido
+cd ingesta
+python3 ingesta_api.py
+```
+
 ## 🔧 Configuración de la EC2
 
 ### Security Group
