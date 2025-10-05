@@ -50,10 +50,10 @@ docker-compose up --build -d
 ### Paso 5: Verificar el despliegue
 ```bash
 # Verificar contenedores activos
-docker ps
+docker compose ps
 
 # Ver logs de la aplicación
-docker logs estudiantes-app
+docker compose logs app
 
 # Probar salud del servicio
 curl http://<public-ip>:8080/estudiantes
@@ -152,12 +152,6 @@ curl -X DELETE http://<public-ip>:8080/estudiantes/2f8c9e7e-1234-5678-90ab-cdef1
 - `pais` VARCHAR
 - `fecha_creacion` TIMESTAMP
 - `fecha_actualizacion` TIMESTAMP
-
-### Tabla: estudiante_perfil
-- `id` UUID (Primary Key, Foreign Key a estudiante)
-- `avatar_url` VARCHAR
-- `bio` TEXT
-- `preferencias` JSONB
 
 ## 🔄 Flujo de Comunicación
 
