@@ -1,7 +1,6 @@
 package com.cloudcomp.students.service;
 
 import com.cloudcomp.students.model.Estudiante;
-import com.cloudcomp.students.model.EstudiantePerfil;
 import com.cloudcomp.students.repository.EstudianteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
