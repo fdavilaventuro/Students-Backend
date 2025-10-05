@@ -87,6 +87,11 @@ docker compose down -v
 
 ## 📚 Endpoints de la API
 
+### Vista interactiva en swagger-ui
+```bash
+http://<public-ip>:8080/swagger-ui.html
+```
+
 ### GET /estudiantes
 Obtiene lista paginada de estudiantes
 ```bash
