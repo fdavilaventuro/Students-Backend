@@ -42,32 +42,12 @@ docker run -it --rm -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3 mvn
 docker build -t microservicio-estudiantes .
 ```
 
-### Paso 4: Ejecutar la base de datos PostgreSQL
+### Paso 4: Ejecutar el docker compose
 ```bash
-docker run -d \
-  --name postgres-db \
-  -e POSTGRES_DB=estudiantesdb \
-  -e POSTGRES_USER=estudianteuser \
-  -e POSTGRES_PASSWORD=estudiantepass \
-  -p 5432:5432 \
-  -v postgres_data:/var/lib/postgresql/data \
-  postgres:15
+docker-compose up --build -d
 ```
 
-### Paso 5: Ejecutar la aplicación
-```bash
-docker run -d \
-  --name estudiantes-app \
-  --link postgres-db \
-  -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/estudiantesdb \
-  -e SPRING_DATASOURCE_USERNAME=estudianteuser \
-  -e SPRING_DATASOURCE_PASSWORD=estudiantepass \
-  -e SPRING_JPA_HIBERNATE_DDL-AUTO=update \
-  -p 8080:8080 \
-  microservicio-estudiantes
-```
-
-### Paso 6: Verificar el despliegue
+### Paso 5: Verificar el despliegue
 ```bash
 # Verificar contenedores activos
 docker ps
@@ -90,19 +70,19 @@ Asegúrate de que el Security Group de tu EC2 permita:
 ### Comandos útiles para gestión
 ```bash
 # Detener aplicación
-docker stop estudiantes-app
+docker compose stop app
 
 # Iniciar aplicación
-docker start estudiantes-app
+docker compose start app
 
 # Ver logs en tiempo real
-docker logs -f estudiantes-app
+docker compose logs -f app
 
 # Eliminar contenedores
-docker rm -f estudiantes-app postgres-db
+docker compose rm -sf app db
 
 # Eliminar volumen de datos (cuidado: elimina toda la data)
-docker volume rm postgres_data
+docker compose down -v
 ```
 
 ## 📚 Endpoints de la API
@@ -131,16 +111,11 @@ Crea un nuevo estudiante
 curl -X POST http://<public-ip>:8080/estudiantes \
   -H "Content-Type: application/json" \
   -d '{
-    "nombres": "Juan",
-    "apellidos": "Pérez",
-    "email": "juan.perez@example.com",
+    "nombres": "Ana",
+    "apellidos": "Gómez",
+    "email": "ana.gomez@example.com",
     "telefono": "+123456789",
-    "pais": "España",
-    "perfil": {
-      "avatarUrl": "https://example.com/avatar.jpg",
-      "bio": "Estudiante de negocios digitales",
-      "preferencias": "{\"idioma\": \"es\", \"tema\": \"claro\"}"
-    }
+    "pais": "España"
   }'
 ```
 
