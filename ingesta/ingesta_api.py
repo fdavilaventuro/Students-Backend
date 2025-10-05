@@ -6,7 +6,7 @@ import time
 
 # --- Configuración ---
 # La URL completa de tu API corriendo localmente
-API_URL = "http://localhost:8080/api/estudiantes"
+API_URL = "http://localhost:8080/estudiantes"
 # Datos de tu bucket de S3
 S3_BUCKET_NAME = "fabioedv-output-01"
 S3_FILE_KEY = "estudiantes.csv"
