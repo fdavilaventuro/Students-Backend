@@ -32,22 +32,12 @@ git clone https://github.com/fdavilaventuro/Students-Backend.git
 cd Students-Backend
 ```
 
-### Paso 2: Instalar maven y compilar la aplicación (ignora tests)
+### Paso 2: Ejecutar el docker compose
 ```bash
-docker run -it --rm -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3 mvn clean package -DskipTests
+docker compose up --build -d
 ```
 
-### Paso 3: Construir la imagen Docker
-```bash
-docker build -t microservicio-estudiantes .
-```
-
-### Paso 4: Ejecutar el docker compose
-```bash
-docker-compose up --build -d
-```
-
-### Paso 5: Verificar el despliegue
+### Paso 3: Verificar el despliegue
 ```bash
 # Verificar contenedores activos
 docker compose ps
@@ -57,16 +47,6 @@ docker compose logs app
 
 # Probar salud del servicio
 curl http://<public-ip>:8080/estudiantes
-```
-
-### Paso 6: Hacer ingesta (después de comprobar correcto funcionamiento)
-```bash
-# Instalar requerimientos
-pip install boto3 requests
-
-# Ejecutar script de ingesta incluido
-cd ingesta
-python3 ingesta_api.py
 ```
 
 ## 🔧 Configuración de la EC2
